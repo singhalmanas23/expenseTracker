@@ -5,6 +5,8 @@ import "react-datepicker/dist/react-datepicker.css";
 import { useGlobalContext } from '../../context/globalContext';
 import Button from '../Button/Button';
 import { plus } from '../../utils/Icons';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 function ExpenseForm() {
@@ -24,18 +26,20 @@ function ExpenseForm() {
         setError('')
     }
 
+    const notify = () => toast.success("Expense added Successfully");
     const handleSubmit = e => {
-        e.preventDefault()
-        addExpense(inputState)
+        e.preventDefault();
+        addExpense(inputState);
         setInputState({
             title: '',
             amount: '',
             date: '',
             category: '',
             description: '',
-        })
-    }
+        });
+    };
 
+    
     return (
         <ExpenseFormStyled onSubmit={handleSubmit}>
             {error && <p className='error'>{error}</p>}
@@ -91,7 +95,9 @@ function ExpenseForm() {
                     bRad={'30px'}
                     bg={'var(--color-accent'}
                     color={'#fff'}
+                    onClick={notify}
                 />
+                <ToastContainer/>
             </div>
         </ExpenseFormStyled>
     )

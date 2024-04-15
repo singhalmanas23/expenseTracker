@@ -1,37 +1,39 @@
-import React from 'react'
-import styled from 'styled-components'
+import React from 'react';
+import styled from 'styled-components';
 import { useGlobalContext } from '../context/globalContext';
 
 function History() {
-    const {transactionHistory} = useGlobalContext()
+    const { transactionHistory } = useGlobalContext();
 
-    const [...history] = transactionHistory()
+    const history = transactionHistory(); // Remove the spread operator
+
+    console.log(history); // Log history array here
 
     return (
         <HistoryStyled>
             <h2>Recent History</h2>
-            {history.map((item) =>{
-                const {_id, title, amount, type} = item
+            {history.map((item) => {
+                const { _id, title, amount, type } = item;
                 return (
                     <div key={_id} className="history-item">
                         <p style={{
-                            color: type === 'expense' ? 'red' : 'var(--color-green)'
-                        }}>
+                            color: type === 'income' ? 'var(--color-green)' : 'var(--color-red)'
+                        }}> 
                             {title}
                         </p>
 
                         <p style={{
-                            color: type === 'expense' ? 'red' : 'var(--color-green)'
+                            color: type === 'income' ? 'var(--color-green)' : 'var(--color-red)'
                         }}>
                             {
-                                type === 'expense' ? `-${amount <= 0 ? 0 : amount}` : `+${amount <= 0 ? 0: amount}`
+                                type === 'income' ? `+${amount <= 0 ? 0 : amount}` : `-${amount <= 0 ? 0 : amount}`
                             }
                         </p>
                     </div>
-                )
+                );
             })}
         </HistoryStyled>
-    )
+    );
 }
 
 const HistoryStyled = styled.div`
@@ -50,4 +52,4 @@ const HistoryStyled = styled.div`
     }
 `;
 
-export default History
+export default History;

@@ -7,21 +7,16 @@ import Button from '../Button/Button';
 import { plus } from '../../utils/Icons';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+  
 
-
-
-
-function Form() {
-    const {addIncome, getIncomes, error, setError} = useGlobalContext()
+function LimitForm() {
+    const {addLimit, error, setError} = useGlobalContext()
     const [inputState, setInputState] = useState({
-        title: '',
-        amount: '',
-        date: '',
-        category: '',
-        description: '',
+        date: new Date() ,
+        amount: ''
     })
 
-    const { title, amount, date, category,description } = inputState;
+    const { date,amount } = inputState;
 
     const handleInput = name => e => {
         setInputState({...inputState, [name]: e.target.value})
@@ -30,37 +25,17 @@ function Form() {
 
     const handleSubmit = e => {
         e.preventDefault()
-        addIncome(inputState)
+        addLimit(inputState)
         setInputState({
-            title: '',
-            amount: '',
-            date: '',
-            category: '',
-            description: '',
+            date:new Date(),
+            amount:''
         })
     }
-    //const notify = () => toast.success("Income added  Successfully");
+    const notify = () => toast.success("Limit Added Successfully");
 
     return (
-        <FormStyled onSubmit={handleSubmit}>
+        <LimitFormStyled onSubmit={handleSubmit}>
             {error && <p className='error'>{error}</p>}
-            <div className="input-control">
-                <input 
-                    type="text" 
-                    value={title}
-                    name={'title'} 
-                    placeholder="Salary Title"
-                    onChange={handleInput('title')}
-                />
-            </div>
-            <div className="input-control">
-                <input value={amount}  
-                    type="text" 
-                    name={'amount'} 
-                    placeholder={'Salary Amount'}
-                    onChange={handleInput('amount')} 
-                />
-            </div>
             <div className="input-control">
                 <DatePicker 
                     id='date'
@@ -72,38 +47,32 @@ function Form() {
                     }}
                 />
             </div>
-            <div className="selects input-control">
-                <select required value={category} name="category" id="category" onChange={handleInput('category')}>
-                    <option value=""  disabled >Select Option</option>
-                    <option value="salary">Salary</option>
-                    <option value="freelancing">Freelancing</option>
-                    <option value="investments">Investiments</option>
-                    <option value="stocks">Stocks</option>
-                    <option value="bitcoin">Bitcoin</option>
-                    <option value="bank">Bank Transfer</option>  
-                    <option value="youtube">Youtube</option>  
-                    <option value="other">Other</option>  
-                </select>
-            </div>
             <div className="input-control">
-                <textarea name="description" value={description} placeholder='Add A Reference' id="description" cols="30" rows="4" onChange={handleInput('description')}></textarea>
+                <input value={amount}  
+                    type="text" 
+                    name={'amount'} 
+                    placeholder={'Add Limit'}
+                    onChange={handleInput('amount')} 
+                />
             </div>
             <div className="submit-btn">
-                <Button 
-                    name={'Add Income'}
+                <Button onClick={notify}
+                    name={'Add Limit'}
                     icon={plus}
                     bPad={'.8rem 1.6rem'}
                     bRad={'30px'}
                     bg={'var(--color-accent'}
                     color={'#fff'}
-                    />
+                />
+                <ToastContainer  />
             </div>
-        </FormStyled>
+        </LimitFormStyled>
     )
 }
 
 
-const FormStyled = styled.form`
+const LimitFormStyled = styled.form`
+    margin-top:20px;
     display: flex;
     flex-direction: column;
     gap: 2rem;
@@ -149,4 +118,4 @@ const FormStyled = styled.form`
         }
     }
 `;
-export default Form
+export default LimitForm

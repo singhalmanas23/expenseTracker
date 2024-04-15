@@ -71,6 +71,8 @@ const ExpenseStyled = styled.div`
         gap: 2rem;
         .incomes{
             flex: 1;
+            max-height: 500px;
+            overflow-y: scroll;
         }
     }
 `;

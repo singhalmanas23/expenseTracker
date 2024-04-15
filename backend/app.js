@@ -1,25 +1,41 @@
-const express = require('express')
-const cors = require('cors');
-const { db } = require('./db/db');
-const {readdirSync} = require('fs')
-const app = express()
+const { db } = require("./db/db");
+const express = require("express");
+const { readdirSync } = require('fs');
+const path = require('path');
+const router = require('./routes/transact');
 
-require('dotenv').config()
+// Middlewares
+const cors = require("cors");
+const app = express();
 
-const PORT = process.env.PORT
+// //export const instance = new Razorpay({
+//   key_id: process.env.RAZORPAY_API_KEY,
+//   key_secret: process.env.RAZORPAY_SECRET,
+// });
 
-//middlewares
-app.use(express.json())
-app.use(cors())
+require("dotenv").config();
+const PORT = process.env.PORT;
 
-//routes
-readdirSync('./routes').map((route) => app.use('/api/v1', require('./routes/' + route)))
+app.use(express.json());
+app.use(cors());
+
+app.get("/", (req, res) => {
+  res.send("Hello World");
+});
+
+// Load routes dynamically
+const routesPath = path.join(__dirname, 'routes');
+
+readdirSync(routesPath).forEach(file => {
+  const route = require(path.join(routesPath, file));
+  app.use('/api/v1', route);
+});
 
 const server = () => {
-    db()
-    app.listen(PORT, () => {
-        console.log('listening to port:', PORT)
-    })
-}
+  db();
+  app.listen(PORT, () => {
+    console.log("listening to port:", PORT);
+  });
+};
 
-server()
+server();
