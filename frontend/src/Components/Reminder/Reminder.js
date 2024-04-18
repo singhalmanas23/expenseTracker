@@ -1,9 +1,10 @@
 import React from 'react'
+import PaymentReminderForm from './ReminderForm';
 
 export default function Reminder() {
   return (
     <div>
-      <h1>Payment Reminder</h1>
+      <PaymentReminderForm/>
     </div>
   )
 }

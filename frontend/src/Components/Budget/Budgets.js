@@ -70,6 +70,9 @@ const ExpenseStyled = styled.div`
         }
         .budgets {
             flex: 1;
+            max-height: 500px;
+            overflow-y: scroll;
+            
         }
     }
 `;
