@@ -8,6 +8,10 @@ import Dashboard from './Components/Dashboard/Dashboard';
 import Intro from './Components/Form/Intro';
 import Income from './Components/Income/Income';
 import Expenses from './Components/Expenses/Expenses';
+import Animation from './Components/Animation/Animation';
+import Limits from './Components/Limit/Limit';
+import Reminder from './Components/Reminder/Reminder';
+import Budgets from './Components/Budget/Budgets';
 
 function App() {
   const [active, setActive] = useState(1);
@@ -29,13 +33,21 @@ function App() {
         return <Income />
       case 4: 
         return <Expenses />
+        
+      case 5:
+        return <Limits/>
+      case 6:
+        return <Budgets/>
+      case 7:
+        return <Reminder/>
       default: 
-        return <Dashboard />
+      return <Dashboard />
     }
   }
 
   return (
     <AppStyled bg={bg} className="App">
+    <Animation/>
       <Orb />
       {isNameEntered ? (
         <MainLayout>
