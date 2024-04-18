@@ -12,6 +12,7 @@ import Animation from './Components/Animation/Animation';
 import Limits from './Components/Limit/Limit';
 import Reminder from './Components/Reminder/Reminder';
 import Budgets from './Components/Budget/Budgets';
+import View  from './Components/Vhistory/View';
 
 function App() {
   const [active, setActive] = useState(1);
@@ -28,7 +29,7 @@ function App() {
       case 1:
         return <Dashboard />
       case 2:
-        return <Dashboard />
+        return <View/>
       case 3:
         return <Income />
       case 4: 
