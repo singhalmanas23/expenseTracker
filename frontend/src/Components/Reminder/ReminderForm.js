@@ -92,16 +92,6 @@ function PaymentReminderForm() {
                     <ToastContainer />
                 </div>
             </PaymentReminderFormStyled>
-            <PaymentReminderListStyled>
-                <h1>Payment Reminder History</h1>
-                {reminders.map((reminder, index) => (
-                    <div key={index}>
-                        <p>{reminder.title}: {reminder.amount}</p>
-                        <p>Recipient Name: {reminder.userName}</p>
-                        <p>Due Date: {reminder.dueDate ? reminder.dueDate.toLocaleDateString() : ''}</p>
-                    </div>
-                ))}
-            </PaymentReminderListStyled>
         </div>
     )
 }

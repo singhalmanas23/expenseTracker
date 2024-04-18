@@ -170,7 +170,7 @@ export const GlobalProvider = ({children}) => {
 
         return history;
     }
-
+    
     
     const addLimit = async (limit) => {
         const response = await axios.post(`${BASE_URL}addLimit`, limit)
