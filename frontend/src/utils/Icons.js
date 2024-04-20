@@ -30,3 +30,4 @@ export const circle = <i className="fa-solid fa-circle-dot"></i>
 export const limit=<i class="fa-solid fa-circle-exclamation"></i>
 export const create=<i class="fa-solid fa-plus"></i>
 export const remind=<i class="fa-solid fa-bell"></i>
+export const pay=<i class="fa-brands fa-paypal"></i>

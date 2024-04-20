@@ -192,6 +192,14 @@ export const GlobalProvider = ({children}) => {
         });
         return currentDayLimit ? currentDayLimit.amount : 0;
     }
+    const makePayment = async (paymentDetails) => {
+        try {
+            const response = await axios.post(`${BASE_URL}payment`, paymentDetails);
+        } catch (error) {
+            console.error('Error making payment:', error);
+        }
+    };
+
 
 
     return (
@@ -221,7 +229,8 @@ export const GlobalProvider = ({children}) => {
             getBudget,
             addBudget,
             deleteBudget,
-            totalBudget
+            totalBudget,
+            makePayment
         }}>
             {children}
         </GlobalContext.Provider>

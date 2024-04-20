@@ -13,6 +13,7 @@ import Limits from './Components/Limit/Limit';
 import Reminder from './Components/Reminder/Reminder';
 import Budgets from './Components/Budget/Budgets';
 import View  from './Components/Vhistory/View';
+import Pay from './Components/Payment/Pay';
 
 function App() {
   const [active, setActive] = useState(1);
@@ -34,13 +35,14 @@ function App() {
         return <Income />
       case 4: 
         return <Expenses />
-        
       case 5:
         return <Limits/>
       case 6:
         return <Budgets/>
       case 7:
         return <Reminder/>
+      case 8:
+         return <Pay/>
       default: 
       return <Dashboard />
     }
